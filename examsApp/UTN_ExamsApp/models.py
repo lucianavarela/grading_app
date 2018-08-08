@@ -46,6 +46,7 @@ class Revision(models.Model):
     )
     pregunta = models.ForeignKey(Pregunta)
     revisor = models.ForeignKey(User)
+    fecha_revision = models.DateTimeField(null=True, blank=True)
     estado = models.CharField(max_length=60, choices=ESTADOS, default='pendiente')
     observaciones = models.CharField(max_length=1000, null=True, blank=True)
     dificultad_propuesta = models.IntegerField(null=True, blank=True)
