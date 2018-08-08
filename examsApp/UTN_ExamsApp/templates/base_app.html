@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block app_content %}
+
+    <div id="bodyTest">
+        {% if yo is not None %}
+            <p class="title has-text-white has-text-weight-bold" style="margin-top: 20rem;">{{ yo.get_full_name }}</p>
+        {% endif %}
+        <img style="-webkit-user-select: none;" src="{% static "UTN_ExamsApp/assets/logo_UTN.png" %}" alt="UTN Fra">
+
+        <div>
+            <a class="button is-warning has-icons-left has-text-weight-bold" style="margin-top: 2rem;" href="admin/">
+                <span class="icon is-small">
+                    <i class="fas fa-users-cog"></i>
+                </span>
+                <p>Enter Admin Site</p>
+            </a>
+        </div>
+
+    </div>
+
+{% endblock %}

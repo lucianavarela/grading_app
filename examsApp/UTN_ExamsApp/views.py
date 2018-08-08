@@ -5,4 +5,4 @@ def index (request):
     context = {
         'yo': request.user
     }
-    return render(request, 'base.html', context)
+    return render(request, 'base_app.html', context)

@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="{% static "UTN_ExamsApp/assets/fav.png" %}"/>
+    <script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js?a4098"></script>
+    <link rel="stylesheet" href="{% static "UTN_ExamsApp/styles/fontawesome/web-fonts-with-css/css/fontawesome-all.css" %}"/>
+    <link rel="stylesheet" href="{% static "UTN_ExamsApp/styles/main.css" %}"/>
+    <link rel="stylesheet" href="{% static "UTN_ExamsApp/styles/bulma.css" %}"/>
+    <script src="{% static "UTN_ExamsApp/scripts/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "UTN_ExamsApp/scripts/main.js" %}"></script>
+</head>
+<body>
+    {% block app_content %}
+    {% endblock %}
+</body>
+</html>
