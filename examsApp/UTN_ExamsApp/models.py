@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -46,7 +45,27 @@ class Revision(models.Model):
     )
     pregunta = models.ForeignKey(Pregunta)
     revisor = models.ForeignKey(User)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_revision = models.DateTimeField(null=True, blank=True)
     estado = models.CharField(max_length=60, choices=ESTADOS, default='pendiente')
     observaciones = models.CharField(max_length=1000, null=True, blank=True)
     dificultad_propuesta = models.IntegerField(null=True, blank=True)
+
+
+class Examen(models.Model):
+    codigo = models.CharField(max_length=10, null=True, blank=True, default=None)
+    activo = models.BooleanField(default=False)
+    preguntas = models.ManyToManyField(Pregunta, related_name='preguntas_examen', null=True, blank=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
+    creador = models.ForeignKey(User)
+
+
+class Evaluacion(models.Model):
+    nombre_alumno = models.CharField(max_length=500)
+    apellido_alumno = models.CharField(max_length=500)
+    dni_alumno = models.IntegerField()
+    examen = models.ForeignKey(Examen)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
+    corregido = models.BooleanField(default=False)
+    resultado = models.CharField(max_length=30, null=True, blank=True, default=None)
+    nota = models.FloatField()
