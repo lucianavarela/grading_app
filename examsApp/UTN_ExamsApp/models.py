@@ -32,6 +32,7 @@ class Pregunta(models.Model):
     contenido = models.CharField(max_length=1000, null=True, blank=True)
     #imagen = models.ImageField(null=True, blank=True)
     dificultad = models.IntegerField(null=True, blank=True)
+    #notas y mantenimiento, alertar errores
 
 
 class Respuesta(models.Model):
@@ -50,3 +51,5 @@ class Revision(models.Model):
     estado = models.CharField(max_length=60, choices=ESTADOS, default='pendiente')
     observaciones = models.CharField(max_length=1000, null=True, blank=True)
     dificultad_propuesta = models.IntegerField(null=True, blank=True)
+
+#tabla respuestas: related user, related examen, pregunta, respuestas
