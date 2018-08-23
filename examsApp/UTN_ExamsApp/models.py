@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -10,6 +9,7 @@ class TipoPregunta(models.Model):
 class Habilidad(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=300)
+    #bugfixing, correccion de codigo, etc
 
 
 class Tema(models.Model):
@@ -52,4 +52,29 @@ class Revision(models.Model):
     observaciones = models.CharField(max_length=1000, null=True, blank=True)
     dificultad_propuesta = models.IntegerField(null=True, blank=True)
 
+
+class Examen(models.Model):
+    codigo = models.CharField(max_length=10, null=True, blank=True, default=None) #acortar, otro formato?
+    activo = models.BooleanField(default=False)
+
+    preguntas = models.ManyToManyField(Pregunta, related_name='preguntas_examen', null=True, blank=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
+    creador = models.ForeignKey(User)
+
+
+class Evaluacion(models.Model):
+    nombre_alumno = models.CharField(max_length=500)
+    apellido_alumno = models.CharField(max_length=500)
+    dni_alumno = models.IntegerField()
+    examen = models.ForeignKey(Examen)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
+    corregido = models.BooleanField(default=False)
+    resultado = models.CharField(max_length=30, null=True, blank=True, default=None)
+    nota = models.FloatField()
+
 #tabla respuestas: related user, related examen, pregunta, respuestas
+#alumno:
+
+#rol para los usuarios. permisos
+
+#SE VENCE PYTHON
